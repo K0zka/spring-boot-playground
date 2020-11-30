@@ -1,0 +1,7 @@
+
+eureka:
+  instance:
+    hostname: localhost
+  cilent:
+    serviceUrl:
+      d1: http://spring-d1i1:${server.port}/,http://spring-d1i2:${server.port}/

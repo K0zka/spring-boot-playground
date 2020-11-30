@@ -1,0 +1,31 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 60s
+      routes:
+        - id: service_route
+          predicates:
+            - Path= /*
+          uri: lb://SERVICE
+          filters:
+            - name: CircuitBreaker
+            - name: Retry
+          metadata:
+            response-timeout: 20000
+            connect-timeout: 20000
+
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+  client:
+    serviceUrl:
+      defaultZone: http://spring-d2i1:9001/eureka,http://spring-d2i2:9001/eureka,http://spring-d1i1:9001/eureka,http://spring-d1i2:9001/eureka
+

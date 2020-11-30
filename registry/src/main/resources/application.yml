@@ -1,0 +1,13 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: registry
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://spring-d2i1:${server.port}/,http://spring-d2i2:${server.port}/,http://spring-d1i1:${server.port}/,http://spring-d1i2:${server.port}/

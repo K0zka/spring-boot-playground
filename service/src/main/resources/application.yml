@@ -1,0 +1,13 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: service
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+  client:
+    serviceUrl:
+      defaultZone: http://spring-d2i1:9001/eureka,http://spring-d2i2:9001/eureka,http://spring-d1i1:9001/eureka,http://spring-d1i2:9001/eureka
